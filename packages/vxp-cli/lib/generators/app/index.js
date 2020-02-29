@@ -2,8 +2,8 @@ const Generator = require("yeoman-generator");
 const _ = require("lodash");
 const path = require("path");
 const extend = _.merge;
-const globby = require("globby");
 const originUrl = require("git-remote-origin-url");
+const copyTpls = require("../../utils/copyTpls");
 
 module.exports = class extends Generator {
   constructor(args, options) {
@@ -48,8 +48,6 @@ module.exports = class extends Generator {
       curPkg
     );
 
-    this.templateFiles = await globby(["**/*"], { cwd: this.templatePath() });
-
     return originUrl(this.destRoot)
       .then(url => {
         this.pkg.homepage = url;
@@ -64,17 +62,7 @@ module.exports = class extends Generator {
   default() {}
 
   writing() {
-    this.templateFiles.forEach(_f => {
-      if (path.extname(_f) === ".ejs") {
-        this.fs.copyTpl(
-          this.templatePath(_f),
-          this.resolve(_f.replace(/\.ejs$/, "")),
-          this.pkg
-        );
-      } else {
-        this.fs.copy(this.templatePath(_f), this.resolve(_f));
-      }
-    });
+    copyTpls.call(this, this.resolve, this.pkg);
     this.fs.writeJSON(this.resolve("package.json"), this.pkg);
   }
 
