@@ -1,0 +1,7 @@
+{
+  "name": "vxp",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "module": "src/index.js",
+  "license": "MIT"
+}
