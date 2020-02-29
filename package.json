@@ -1,13 +1,16 @@
 {
   "name": "vxp-admin",
+  "description": "A pluggable vue project powered by vxp.",
   "version": "0.1.0",
   "private": true,
-  "workspaces": [ "packages/*" ],
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
+    "vxp": "vxp",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "vxp": "vxp"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "core-js": "^3.6.4",
@@ -32,6 +35,14 @@
     "sass-loader": "^8.0.2",
     "vue-template-compiler": "^2.6.11"
   },
+  "license": "MIT",
+  "keywords": [
+    "vxp",
+    "vue",
+    "pluggable"
+  ],
+  "author": "kenblikylee",
+  "email": "kenblikylee@126.com",
   "gitHooks": {
     "pre-commit": "lint-staged"
   },
@@ -40,5 +51,6 @@
       "vue-cli-service lint",
       "git add"
     ]
-  }
+  },
+  "homepage": "https://github.com/kenblikylee/vxp-admin.git"
 }
